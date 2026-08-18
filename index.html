@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CASE00A｜AIと世界史年表を作る</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <div class="eyebrow">3650 LAB · CASE00A · BUILD MVP v0.1</div>
+      <h1>AIと世界史年表を作る</h1>
+      <p>1450–1800 Europe · 出来事ではなく「因果の分岐と合流」を探索する</p>
+    </div>
+    <div class="stats" aria-label="データ件数">
+      <span><b id="nodeCount">–</b> nodes</span>
+      <span><b id="linkCount">–</b> links</span>
+      <span><b id="storyCount">–</b> stories</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="controls card">
+      <div class="control-row">
+        <div class="control-label">STORY</div>
+        <div id="storyButtons" class="button-wrap"></div>
+      </div>
+      <div class="control-row split-row">
+        <div>
+          <div class="control-label">LANE</div>
+          <div id="laneToggles" class="button-wrap"></div>
+        </div>
+        <div class="legend" aria-label="因果リンク強度の凡例">
+          <span><i class="legend-line strong"></i> STRONG</span>
+          <span><i class="legend-line medium"></i> MEDIUM</span>
+          <span><i class="legend-line debated"></i> DEBATED</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="storySummary" class="story-summary card" aria-live="polite"></section>
+
+    <div class="workspace">
+      <section class="graph-shell card">
+        <div class="graph-help">
+          <span>ノードをクリック → 関連リンクを強調</span>
+          <span>矢印をクリック → 因果説明を表示</span>
+          <button id="resetSelection" class="text-button" type="button">選択解除</button>
+        </div>
+        <div id="graphViewport" class="graph-viewport" tabindex="0" aria-label="1450年から1800年の因果年表">
+          <div id="graphWorld" class="graph-world">
+            <svg id="graphSvg" class="graph-svg" role="img" aria-label="因果リンク"></svg>
+            <div id="nodeLayer" class="node-layer"></div>
+          </div>
+        </div>
+      </section>
+
+      <aside id="detailPanel" class="detail-panel card" aria-live="polite">
+        <div class="detail-empty">
+          <div class="detail-icon">↗</div>
+          <h2>詳細</h2>
+          <p>ノードまたは因果リンクを選択してください。</p>
+          <p class="muted">DEBATEDリンクでは「研究上議論あり」を明示します。</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <p>矢印は単一原因を意味しません。strength / causal_role / 出典を併読してください。</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
