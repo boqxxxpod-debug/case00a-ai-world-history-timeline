@@ -9,9 +9,9 @@
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.1.1</div>
+      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.1.2</div>
       <h1>AIと世界史年表を作る</h1>
-      <p>1450〜1800年のヨーロッパを、出来事ではなく「つながり」で眺めてみる。</p>
+      <p>歴史って、結局なにが何につながったの？ 1450〜1800年のヨーロッパを矢印で追ってみます。</p>
     </div>
     <div class="stats" aria-label="データ件数">
       <span><b id="nodeCount">–</b> できごと</span>
@@ -23,18 +23,18 @@
   <main>
     <section class="controls card">
       <div class="control-row">
-        <div class="control-label">どの流れを見る？</div>
+        <div class="control-label">どの話から見る？</div>
         <div id="storyButtons" class="button-wrap"></div>
       </div>
       <div class="control-row split-row">
         <div>
-          <div class="control-label">テーマを絞る</div>
+          <div class="control-label">見たいテーマだけ</div>
           <div id="laneToggles" class="button-wrap"></div>
         </div>
         <div class="legend" aria-label="因果リンク強度の凡例">
-          <span><i class="legend-line strong"></i> 強め</span>
-          <span><i class="legend-line medium"></i> 中くらい</span>
-          <span><i class="legend-line debated"></i> 議論あり</span>
+          <span><i class="legend-line strong"></i> かなり強い</span>
+          <span><i class="legend-line medium"></i> つながりあり</span>
+          <span><i class="legend-line debated"></i> 意見が分かれる</span>
         </div>
       </div>
     </section>
@@ -44,9 +44,9 @@
     <div class="workspace">
       <section class="graph-shell card">
         <div class="graph-help">
-          <span>● 出来事をタップ → 前後のつながりを見る</span>
-          <span>↗ 矢印をタップ → なぜつながるか読む</span>
-          <button id="resetSelection" class="text-button" type="button">いったん戻す</button>
+          <span>● 丸をタップ → 前後をたどる</span>
+          <span>↗ 矢印をタップ → なんで？を見る</span>
+          <button id="resetSelection" class="text-button" type="button">選び直す</button>
         </div>
         <div id="graphViewport" class="graph-viewport" tabindex="0" aria-label="1450年から1800年の因果年表">
           <div id="graphWorld" class="graph-world">
@@ -59,16 +59,16 @@
       <aside id="detailPanel" class="detail-panel card" aria-live="polite">
         <div class="detail-empty">
           <div class="detail-icon">↗</div>
-          <h2>気になる出来事をタップ</h2>
-          <p>「何が起きた？」「前に何があった？」「このあと何につながる？」まで見られます。</p>
-          <p class="muted">矢印をタップすると、その因果関係も読めます。</p>
+          <h2>気になる丸をタップ</h2>
+          <p>その出来事をざっくり読んで、<b>「その前は？」→「で、そのあと？」</b>とたどれます。</p>
+          <p class="muted">矢印をタップすると「なんでこの2つがつながるの？」も見られます。</p>
         </div>
       </aside>
     </div>
   </main>
 
   <footer>
-    <p>歴史は一本線ではありません。矢印の強さや「議論あり」も含めて眺めてください。</p>
+    <p>歴史は「原因はこれ！」で終わらない。強い矢印も、意見が分かれる矢印もあります。</p>
   </footer>
 
   <script src="data_core.js"></script>
@@ -79,5 +79,6 @@
   <script src="stories.js"></script>
   <script src="app.js"></script>
   <script src="ui_patch.js"></script>
+  <script src="ui_casual_v2.js"></script>
 </body>
 </html>
