@@ -36,7 +36,7 @@
         return `<li>
           <button type="button" class="relation-jump" data-jump-node="${escapeAttr(otherId)}">
             <span class="relation-title">${escapeHtml(other?.title || otherId)}</span>
-            <span class="relation-label">${direction === 'in' ? '→' : '→'} ${escapeHtml(l.label || '')}</span>
+            <span class="relation-label">→ ${escapeHtml(l.label || '')}</span>
             <span class="relation-strength ${escapeAttr(l.strength)}">${escapeHtml(strengthNames[l.strength] || l.strength)}</span>
           </button>
         </li>`;
@@ -121,9 +121,6 @@
     const headerP = document.querySelector('.app-header p');
     if (headerP) headerP.textContent = '1450〜1800年のヨーロッパを、出来事ではなく「つながり」で眺めてみる。';
 
-    const stats = document.querySelector('.stats');
-    if (stats) stats.innerHTML = '<span><b id="nodeCount">38</b> できごと</span><span><b id="linkCount">35</b> つながり</span><span><b id="storyCount">6</b> ストーリー</span>';
-
     const labels = document.querySelectorAll('.control-label');
     if (labels[0]) labels[0].textContent = 'どの流れを見る？';
     if (labels[1]) labels[1].textContent = 'テーマを絞る';
@@ -132,7 +129,13 @@
     if (legend) legend.innerHTML = '<span><i class="legend-line strong"></i> 強め</span><span><i class="legend-line medium"></i> 中くらい</span><span><i class="legend-line debated"></i> 議論あり</span>';
 
     const help = document.querySelector('.graph-help');
-    if (help) help.innerHTML = '<span>● 出来事をタップ → 前後のつながりを見る</span><span>↗ 矢印をタップ → なぜつながるか読む</span><button id="resetSelection" class="text-button" type="button">いったん戻す</button>';
+    if (help) {
+      const spans = help.querySelectorAll('span');
+      if (spans[0]) spans[0].textContent = '● 出来事をタップ → 前後のつながりを見る';
+      if (spans[1]) spans[1].textContent = '↗ 矢印をタップ → なぜつながるか読む';
+      const reset = help.querySelector('#resetSelection');
+      if (reset) reset.textContent = 'いったん戻す';
+    }
 
     const footer = document.querySelector('footer p');
     if (footer) footer.textContent = '歴史は一本線ではありません。矢印の強さや「議論あり」も含めて眺めてください。';
