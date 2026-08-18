@@ -1,0 +1,26 @@
+name: QA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check ui_patch.js
+          node --check ui_casual_v2.js
+          node --check data_core.js
+          node --check nodes_1.js
+          node --check nodes_2.js
+          node --check links_1.js
+          node --check links_2.js
+          node --check stories.js
+          node --check deep_story_data_a_v03.js
+          node --check deep_story_data_b_v03.js
+          node --check deep_story_reader_v03.js
+          node --check story_button_labels_v03.js
