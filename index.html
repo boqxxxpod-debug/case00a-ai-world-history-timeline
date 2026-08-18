@@ -9,9 +9,9 @@
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.2.0</div>
+      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.3.0</div>
       <h1>AIと世界史年表を作る</h1>
-      <p>歴史って、結局なにが何につながったの？ 1450〜1800年のヨーロッパを矢印で追ってみます。</p>
+      <p>歴史って「何年に何があった」より、「なんで次につながった？」のほうが面白くない？</p>
     </div>
     <div class="stats" aria-label="データ件数">
       <span><b id="nodeCount">–</b> できごと</span>
@@ -23,7 +23,7 @@
   <main>
     <section class="controls card">
       <div class="control-row">
-        <div class="control-label">どの話から見る？</div>
+        <div class="control-label">どの話からいく？</div>
         <div id="storyButtons" class="button-wrap"></div>
       </div>
       <div class="control-row split-row">
@@ -45,7 +45,7 @@
       <section class="graph-shell card">
         <div class="graph-help">
           <span>● 丸をタップ → 前後をたどる</span>
-          <span>↗ 矢印をタップ → なんで？を見る</span>
+          <span>↗ 矢印をタップ → 「なんで？」を見る</span>
           <button id="resetSelection" class="text-button" type="button">選び直す</button>
         </div>
         <div id="graphViewport" class="graph-viewport" tabindex="0" aria-label="1450年から1800年の因果年表">
@@ -58,10 +58,10 @@
 
       <aside id="detailPanel" class="detail-panel card" aria-live="polite">
         <div class="detail-empty">
-          <div class="detail-icon">↗</div>
-          <h2>気になる丸をタップ</h2>
-          <p>その出来事をざっくり読んで、<b>「その前は？」→「で、そのあと？」</b>とたどれます。</p>
-          <p class="muted">矢印をタップすると「なんでこの2つがつながるの？」も見られます。</p>
+          <div class="detail-icon">👀</div>
+          <h2>まず上の話を1つ選んでみて</h2>
+          <p>右で話を読んで、気になったら左の地図で「今どこ？」を確認する感じです。</p>
+          <p class="muted">丸や矢印から自由に寄り道してもOK。</p>
         </div>
       </aside>
     </div>
@@ -80,6 +80,8 @@
   <script src="app.js"></script>
   <script src="ui_patch.js"></script>
   <script src="ui_casual_v2.js"></script>
-  <script src="story01_deep_v02.js"></script>
+  <script src="deep_story_data_a_v03.js"></script>
+  <script src="deep_story_data_b_v03.js"></script>
+  <script src="deep_story_reader_v03.js"></script>
 </body>
 </html>
