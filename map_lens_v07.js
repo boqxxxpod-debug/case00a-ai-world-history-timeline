@@ -155,10 +155,8 @@
     const node = document.querySelector(`.node[data-node-id="${CSS.escape(anchor)}"]`);
     if (!node) return;
 
-    const world = document.getElementById('graphWorld');
-    if (!world) return;
-    const nodeCenterX = node.offsetLeft + node.offsetWidth / 2;
-    const nodeCenterY = node.offsetTop + node.offsetHeight / 2;
+    const nodeCenterX = node.offsetLeft;
+    const nodeCenterY = node.offsetTop;
     const left = Math.max(0, nodeCenterX - viewport.clientWidth / 2);
     const top = Math.max(0, nodeCenterY - viewport.clientHeight / 2);
     viewport.scrollTo({left, top, behavior: smooth ? 'smooth' : 'auto'});
@@ -168,6 +166,7 @@
     const sid = activeStoryId();
     const idx = currentStepIndex();
     const key = `${sid || 'none'}:${idx}`;
+
     if (!sid || !stories[sid]) {
       if (lastKey !== key) clearClasses();
       const bar = ensureLensBar();
@@ -180,11 +179,12 @@
       clearClasses();
       classifyMap(sid, idx);
       renderLensBar(sid, idx);
-      if (autoCenter) centerCurrent(sid, idx, false);
       lastKey = key;
-    } else {
-      renderLensBar(sid, idx);
+      if (autoCenter) centerCurrent(sid, idx, false);
+      return;
     }
+
+    if (autoCenter) centerCurrent(sid, idx, true);
   }
 
   function installStyles() {
@@ -222,7 +222,7 @@
       body.deep-story-mode .link-visible.v07-current-link { opacity:1 !important; stroke:#e0922f !important; stroke-width:5.5 !important; filter:drop-shadow(0 2px 2px rgba(0,0,0,.18)); }
       body.deep-story-mode .link-visible.v07-next-link { opacity:.72 !important; stroke:#55789b !important; stroke-width:3.8 !important; }
 
-      .node .v07-step-badge { position:absolute; left:-11px; top:-11px; min-width:20px; height:20px; padding:0 4px; border-radius:999px; display:grid; place-items:center; font-size:8px; font-weight:900; line-height:1; background:#efede8; color:#736c63; border:2px solid #fff; box-shadow:0 2px 5px rgba(0,0,0,.16); z-index:12; }
+      .node .v07-step-badge { position:absolute; left:-11px; top:-11px; min-width:20px; height:20px; padding:0 4px; border-radius:999px; display:grid; place-items:center; font-size:8px; font-weight:900; line-height:1; background:#efede8; color:#736c63; border:2px solid #fff; box-shadow:0 2px 5px rgba(0,0,0,.16); z-index:12; pointer-events:none; }
       .node .v07-step-badge.visited { background:#718873; color:#fff; }
       .node .v07-step-badge.current { background:#e5a93f; color:#fff; }
       .node .v07-step-badge.next { background:#55789b; color:#fff; }
