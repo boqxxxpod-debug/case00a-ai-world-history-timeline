@@ -1,26 +1,58 @@
 name: QA
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 jobs:
-  syntax-check:
+  static-checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check JavaScript syntax
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check loaded JavaScript syntax
         run: |
-          node --check app.js
-          node --check ui_patch.js
-          node --check ui_casual_v2.js
-          node --check data_core.js
-          node --check nodes_1.js
-          node --check nodes_2.js
-          node --check links_1.js
-          node --check links_2.js
-          node --check stories.js
-          node --check deep_story_data_a_v03.js
-          node --check deep_story_data_b_v03.js
-          node --check deep_story_reader_v03.js
-          node --check story_button_labels_v03.js
+          set -euo pipefail
+          for file in \
+            data_core.js nodes_1.js nodes_2.js links_1.js links_2.js stories.js \
+            app.js ui_patch.js ui_casual_v2.js \
+            deep_story_data_a_v03.js deep_story_data_b_v03.js deep_story_enrich_v05.js \
+            deep_story_reader_v03.js experience_v09.js
+          do
+            echo "Checking $file"
+            node --check "$file"
+          done
+
+      - name: Check index script references
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          html = Path('index.html').read_text(encoding='utf-8')
+          scripts = re.findall(r'<script\s+src="([^"]+)"', html)
+          missing = [src for src in scripts if not Path(src).is_file()]
+          if missing:
+              raise SystemExit(f'Missing script files: {missing}')
+
+          assert 'experience_v09.js' in scripts
+          retired = {
+              'story_button_labels_v03.js',
+              'reader_polish_v04.js',
+              'reader_depth_v05.js',
+              'reader_journey_v06.js',
+              'map_lens_v07.js',
+              'review_summary_v08.js',
+          }
+          still_loaded = sorted(retired.intersection(scripts))
+          if still_loaded:
+              raise SystemExit(f'Retired patch files are still loaded: {still_loaded}')
+
+          print(f'OK: {len(scripts)} script references, all files exist')
+          PY
