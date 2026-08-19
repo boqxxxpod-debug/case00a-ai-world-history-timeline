@@ -9,9 +9,9 @@
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.6.0</div>
+      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.7.0</div>
       <h1>AIと世界史年表を作る</h1>
-      <p>年号より、「なんで？」「ほんと？」「他の説は？」を、6章でつないで追ってみる。</p>
+      <p>右で「なんで？」を読んで、左の地図で「なるほど、ここか」を見る。</p>
     </div>
     <div class="stats" aria-label="データ件数">
       <span><b id="nodeCount">–</b> できごと</span>
@@ -60,15 +60,15 @@
         <div class="detail-empty">
           <div class="detail-icon">👀</div>
           <h2>まず上の話を1つ選んでみて</h2>
-          <p>右で話を読んで、気になったら左の地図で「今どこ？」を確認する感じです。</p>
-          <p class="muted">数字・意外な話・歴史家の論争も途中に出てきます。</p>
+          <p>右で話を読んで、左は「今どこ？」を確認する地図として使います。</p>
+          <p class="muted">読み進めると、通った場所・いま・つぎが地図上で変わります。</p>
         </div>
       </aside>
     </div>
   </main>
 
   <footer>
-    <p>「原因はこれ！」と決めすぎない。数字も反論も寄り道も、まとめて歴史です。</p>
+    <p>地図は答えではなく現在地。線がないところも、複数の線が集まるところも含めて歴史です。</p>
   </footer>
 
   <script src="data_core.js"></script>
@@ -88,5 +88,6 @@
   <script src="reader_polish_v04.js"></script>
   <script src="reader_depth_v05.js"></script>
   <script src="reader_journey_v06.js"></script>
+  <script src="map_lens_v07.js"></script>
 </body>
 </html>
