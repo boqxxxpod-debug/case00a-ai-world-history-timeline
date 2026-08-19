@@ -9,9 +9,9 @@
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.8.0</div>
+      <div class="eyebrow">3650 LAB · CASE00A · MVP v0.9.0</div>
       <h1>AIと世界史年表を作る</h1>
-      <p>右で「なんで？」を読んで、左の地図でつながりを見て、最後に350年をまとめて振り返る。</p>
+      <p>右で「なんで？」を読む。左で「ここか」を見る。最後に350年をつなぎ直す。</p>
     </div>
     <div class="stats" aria-label="データ件数">
       <span><b id="nodeCount">–</b> できごと</span>
@@ -61,34 +61,36 @@
           <div class="detail-icon">👀</div>
           <h2>まず上の話を1つ選んでみて</h2>
           <p>右で話を読んで、左は「今どこ？」を確認する地図として使います。</p>
-          <p class="muted">読み終わったら「🧭 6章まとめ」で350年を一気に振り返れます。</p>
+          <p class="muted">数字・意外な話・論争も読みながら、最後は「🧭 6章まとめ」で振り返れます。</p>
         </div>
       </aside>
     </div>
   </main>
 
   <footer>
-    <p>歴史は一本線じゃない。増幅・分岐・並行・ボトルネック・合流として見ると、つながりが見えてきます。</p>
+    <p>歴史は一本線じゃない。増幅・分岐・並行・ボトルネック・合流として見る。</p>
   </footer>
 
+  <!-- 1. Historical graph data -->
   <script src="data_core.js"></script>
   <script src="nodes_1.js"></script>
   <script src="nodes_2.js"></script>
   <script src="links_1.js"></script>
   <script src="links_2.js"></script>
   <script src="stories.js"></script>
+
+  <!-- 2. Base graph UI -->
   <script src="app.js"></script>
   <script src="ui_patch.js"></script>
   <script src="ui_casual_v2.js"></script>
+
+  <!-- 3. Deep-reading content -->
   <script src="deep_story_data_a_v03.js"></script>
   <script src="deep_story_data_b_v03.js"></script>
   <script src="deep_story_enrich_v05.js"></script>
+
+  <!-- 4. Reader + consolidated experience layer -->
   <script src="deep_story_reader_v03.js"></script>
-  <script src="story_button_labels_v03.js"></script>
-  <script src="reader_polish_v04.js"></script>
-  <script src="reader_depth_v05.js"></script>
-  <script src="reader_journey_v06.js"></script>
-  <script src="map_lens_v07.js"></script>
-  <script src="review_summary_v08.js"></script>
+  <script src="experience_v09.js"></script>
 </body>
 </html>
